@@ -1,0 +1,11 @@
+<div class="w-full h-16 flex items-center justify-between p-3 bg-gray-700">
+  <%= link_to "Home", "/", class: "text-xl text-gray-100" %>
+
+  <% if current_user %>
+    <div class="flex items-center gap-3">
+      <span class="text-gray-100"> <%= current_user.username || "no username set" %> </span>
+      <%= link_to "Sign Out", destroy_user_session_path, class: "bg-gray-300 text-gray-700 rounded-lg px-3 py-2", 
+          data: { turbo_method: :delete } %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="h-64 w-full bg-gray-500 flex flex-col justify-center items-center"> 
+  <h1 class="text-7xl"> <%= @forum.name %> </h1>
+  <br/>
+  <p class="text-lg"> <%= @forum.description %> </p>
+</div>
+
+<div class="flex justify-end flex-wrap items-center gap-4 mt-4">
+  <%= link_to "Create Post", new_forum_post_path(@forum), class: "bg-blue-500 text-blue-100 px-5 py-3 rounded-lg" %>
+  <% if current_user == @forum.user %>
+    <%= link_to "Edit this forum", edit_forum_path(@forum), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block">
+      <%= button_to "Destroy this forum", forum_path(@forum), method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="max-w-5xl w-full mx-auto mt-8 grid gap-4">
+  <% @forum.posts.order(score: :desc).each do |post| %>
+    <%= render "post", post: post %>
+  <% end %>
+</div>

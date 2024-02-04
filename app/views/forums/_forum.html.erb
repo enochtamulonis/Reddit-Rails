@@ -1,0 +1,11 @@
+<%= link_to forum do %>
+  <div id="<%= dom_id forum %>" class="bg-gray-300 py-2 px-4">
+    <p class="my-2 text-3xl">
+      <%= forum.name %>
+    </p>
+
+    <p class="my-2">
+      <%= forum.description %>
+    </p>
+  </div>
+<% end %>

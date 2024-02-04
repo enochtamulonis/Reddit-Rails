@@ -1,0 +1,38 @@
+<div class="flex gap-3 w-full items-center">
+  <div class="flex flex-col gap-4 mr-3">
+    <%= link_to post_votes_path(post, vote: :upvote), data: { turbo_method: :post } do %>
+      <div class="w-8 bg-gray-500 rounded-full flex justify-center items-center p-1 hover:bg-green-500">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full">
+          <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    <% end %>
+
+    <%= link_to post_votes_path(post, vote: :downvote), data: { turbo_method: :post } do %>
+      <div class="w-8 bg-gray-500 rounded-full flex justify-center items-center p-1 hover:bg-red-500">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full">
+          <path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v16.19l6.22-6.22a.75.75 0 1 1 1.06 1.06l-7.5 7.5a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 1 1 1.06-1.06l6.22 6.22V3a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    <% end %>
+
+  </div>
+
+  <span class="text-2xl w-8 overflow-hidden">
+    <%= post.score %>
+  </span>
+
+  <%= link_to [post.forum, post], class: "w-full" do %>
+    <div class="w-full h-36 flex bg-gray-300 p-3">
+
+      <div class="flex flex-col w-1/2">
+        <span class="text-3xl"> <%= post.title %> </span>
+        <span class="text-lg overflow-hidden"> <%= post.body.to_plain_text.first(50) %> </span>
+      </div>
+      <div class="flex flex-col w-1/2">
+        <span class="text-lg"> Posted by <%= post.user.username %> </span>
+        <span class="text-lg"> Posted <%= time_ago_in_words(post.created_at) %> ago </span>
+      </div>
+    </div>
+  <% end %>
+</div>
